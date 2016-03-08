@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+	<head>
+	
+		<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+		<title>Leaderboard</title>
+	</head>
+	<body background="kong_zi.jpg">
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-74857305-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>	
+		<div style="opacity: 0.9"><!--nav bar :DD-->
+			<ul id="nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="leaderboard">Leaderboard</a></li>
+				<li><a href="question">Submit a question</a></li>
+				<li><a href="about">About</a></li>
+				<li><a href="{{url}}">{{url_linktext}}</a></li>
+			</ul>
+		</div>
+		<div id="leadboard"><h1 class="center">LEADERBOARD</h1></div>
+		<div id="leaderboarder" style="padding:100px">
+		<table id="leaderboard" class="center" bgcolor="cyan" style="width: 50%;">
+			<tr>
+				<th>Position</th>
+				<th>Name</th>
+				<th>Score</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>{{name_1}}</td>
+				<td>{{score_1}}</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>{{name_2}}</td>
+				<td>{{score_2}}</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>{{name_3}}</td>
+				<td>{{score_3}}</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>{{name_4}}</td>
+				<td>{{score_4}}</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>{{name_5}}</td>
+				<td>{{score_5}}</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>{{name_6}}</td>
+				<td>{{score_6}}</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>{{name_7}}</td>
+				<td>{{score_7}}</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>{{name_8}}</td>
+				<td>{{score_8}}</td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>{{name_9}}</td>
+				<td>{{score_9}}</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>{{name_10}}</td>
+				<td>{{score_10}}</td>
+			</tr>
+			<tr class="border-top">
+				<td>{{user_position}}</td>
+				<td>{{user_nick}}</td>
+				<td>{{user_score}}</td>
+			</tr>
+		</table>
+		</div>
+		{% if user %}									<!-- {{useremail}}-->
+            {{ user.email() }}
+        {% else %}
+            Anonymous
+        {% endif %}
+		| <a href="{{ url|safe }}">{{ url_linktext }}</a>
+	</body>
+</html>
+{% endautoescape %}

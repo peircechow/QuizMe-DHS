@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+{% autoescape true %}
+<html>
+	<head>
+	
+		<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+	</head>
+	<body background="kong_zi.jpg">
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-74857305-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>	
+		<div style="opacity: 0.9"><!--nav bar :DD-->
+			<ul id="nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="leaderboard">Leaderboard</a></li>
+				<li><a href="question">Submit a question</a></li>
+				<li><a href="about">About</a></li>
+				<li><a href="{{url}}">{{url_linktext}}</a></li>
+			</ul>
+		</div>
+		<div style="background-color:#C0FFF4; margin:0 auto; width:50%; opacity: 0.9;">
+			<div class="center">
+				<h2>Challenge your friends by submitting a question below!
+					<br>(Bonus points will be given:D)
+				</h2>
+			</div>
+			<div class="center" style="width:50%">
+				<form action="/store" method="post">
+					<p style="text-align:left">Question:</p>
+					<input type="text" name="qntext" style="width:100%;font-size:18pt;"><br>
+					<p> Answer (please select the correct option)</p><br>
+					<input type="radio" name="option" value="A">A:<input type="text" name="optA"><br>
+					<input type="radio" name="option" value="B">B:<input type="text" name="optB"><br>
+					<input type="radio" name="option" value="C">C:<input type="text" name="optC"><br>
+					<input type="radio" name="option" value="D">D:<input type="text" name="optD"><br>
+					<input type="submit" value="Submit">
+				</form>
+			</div>
+		<div>
+	</body>
+</html>
+{% endautoescape %}
