@@ -158,6 +158,11 @@ class CheckStore(webapp2.RequestHandler):
 			self.redirect('/')
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
+			if users.get_current_user():
+				self.redirect('/')
+	def get(self):
+		if users.get_current_user():
+			self.redirect('/')
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
