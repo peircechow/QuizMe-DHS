@@ -289,7 +289,7 @@ class Leaderboard(webapp2.RequestHandler):
 				
 			try:
 				score_6=scores[5].score
-				name_6=score[5].name
+				name_6=scores[5].name
 			except:
 				score_6="-"
 				name_6="-"
