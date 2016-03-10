@@ -26,15 +26,15 @@ li {
 	text-align:center;
 }
 #nav li a:hover {
-    background-color: #555;
-    color: yellow;
+    background-color: #006666;
+    color: white;
 }
 #point_system{
 	margin:0 auto;
 	background-color:cyan;
 	position:static;
 	width:20%;
-	padding:0px 10px;
+	padding:0px 10px 0px 10px;
 }
 #points{
 	border: 2px solid black;
@@ -46,12 +46,12 @@ li {
     padding: 16px;
     text-decoration: none;
 	text-align:center;
-	background-color:lime;
+	background-color:cyan;
 }
 
 #takequiz a:hover{
 	color:yellow;
-	background-color:green;
+	background-color:black;
 }
 #about{
 	background-color:#CCE1E8;
@@ -63,12 +63,19 @@ li {
 	border:1px solid black;
 }
 
+.link_remove{
+	text-decoration:none;
+	color:black
+}
 #instructions{
 	padding:8px;
 	margin:0 auto;
 	background-color:#CCE1E8;
 	border-radius:10px;
 	border:1px solid cyan;
+}
+#our:hover{
+	color:yellow;
 }
 
 #pre{

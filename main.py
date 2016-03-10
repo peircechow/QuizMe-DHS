@@ -95,7 +95,7 @@ class QuestionStore(webapp2.RequestHandler):
 			
 			#get user score from database
 
-				new_score=score+15
+				new_score=score+25
 				user_entity=user_key.get()
 				#store user score(need to get key of user's nickname first, find out in GAE book.)
 				user_entity.score=new_score
@@ -106,11 +106,16 @@ class QuestionStore(webapp2.RequestHandler):
 			self.redirect(users.create_login_url(self.request.uri))
 			if user:
 				self.redirect('/question')
+				
+	def get(self):
+		if users.get_current_user():
+			self.redirect('/')
 class CheckStore(webapp2.RequestHandler):
 	def post(self):
 		if users.get_current_user():
 			user=users.get_current_user()
 			resp=self.request.get("choice")
+			blank=self.request.get("no_option_selected")
 			# u=UserAns(parent=UserAns_key())
 			# u.userans=resp
 			# u.put()
@@ -137,10 +142,10 @@ class CheckStore(webapp2.RequestHandler):
 				#update user entity
 				user_entity.put()
 
-			elif resp=="0":
+			elif resp==blank:
 				score=int(user_data[0].score) 
 				#+7
-				new_score=score-2
+				new_score=score-5
 				user_entity=user_key.get()
 				#store user score(need to get key of user's nickname first, find out in GAE book.)
 				user_entity.score=new_score
@@ -166,6 +171,7 @@ class CheckStore(webapp2.RequestHandler):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+			
         if user:
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
@@ -181,18 +187,27 @@ class MainHandler(webapp2.RequestHandler):
 		}
 	user = users.get_current_user()
 	dunmanian=Dunmanian(parent=Dunmanian_key())
-	users.get_current_user()
-	if users.get_current_user():
+	if users.get_current_user():#checking if Dunmanian exists, if not redirect them to about page
 		d_query=Dunmanian.query().filter(Dunmanian.name==user.nickname())
 		result=d_query.fetch(1)
+		d_query=Dunmanian.query().filter(Dunmanian.name==user.nickname())
+		result=d_query.fetch(1)
+		if result:
+			user_score=result[0].score #gets score of current user
+			user_text="Your Current Score:"
+
 		
 		if not result:
 			dunmanian.name=user.nickname()
 			dunmanian.score=0
 			dunman_key=dunmanian.put()
-			self.response.write(dunman_key)
+			self.redirect("/about")
+			
+			user_text="Welcome to QuizMe@DHS!"
+			user_score=''
 	else:
-		users.create_login_url(self.request.uri)
+		user_score=''
+		user_text="Please login to view your score"
 	
 	question_query = Question.query(ancestor=get_key())
 	n=random.randint(1,10)
@@ -214,6 +229,8 @@ class MainHandler(webapp2.RequestHandler):
 	'url': url,
 	'url_linktext': url_linktext,
 	"qntext":qntext,
+	"user_text":user_text,
+	"user_score":user_score,
 	"option_a":option_a,
 	"option_b":option_b,
 	"option_c":option_c,
@@ -244,6 +261,7 @@ class Leaderboard(webapp2.RequestHandler):
 					dunmanian.score=0
 					dunman_key=dunmanian.put()
 					self.response.write(dunman_key)
+					self.redirect("/about")
 				
 			
 			a=[] #put all the scores here 
@@ -405,6 +423,7 @@ class About(webapp2.RequestHandler):
 					dunmanian.score=0
 					dunman_key=dunmanian.put()
 					self.response.write(dunman_key)
+					self.redirect("/about")
 		
 			template = JINJA_ENVIRONMENT.get_template('about.html') #change the file to the relevant html file
 			self.response.write(template.render(template_values))
@@ -436,7 +455,7 @@ class QuestionPage(webapp2.RequestHandler):
 					dunmanian.name=user.nickname()
 					dunmanian.score=0
 					dunman_key=dunmanian.put()
-					self.response.write(dunman_key)
+					self.redirect("/about")
 			
 				
 			template = JINJA_ENVIRONMENT.get_template('question.html') #change the file to the relevant html file

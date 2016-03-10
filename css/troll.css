@@ -1,4 +1,7 @@
 body{
 	background-image:url("troll_face.jpg")
 }
-ul {
+.center{
+	margin:0 auto;
+	text-align:center;
+}

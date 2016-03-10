@@ -33,7 +33,6 @@
 				<h6 style="width:100%;font-size:18pt"></h6><style="width:100%;font-size:18pt;"><br>
 				<p style="text-align:centre; font-size:20px">{{qntext}}</p>
 				<p> Answer:</p>
-				<input type="radio" name="choice" value="0" checked>Select Option:<br>
 				<input type="radio" name="choice" value="A" >A:{{option_a}} <br>
 				<input type="radio" name="choice" value="B">B:{{option_b}} <br>
 				<input type="radio" name="choice" value="C">C:{{option_c}} <br>
@@ -43,17 +42,17 @@
 			</div>
 		</div>
 				<div class="centre" id="pre">
-			<p class="center">(Before you begin, please read <a href= "http://fossasia.org/" style="text-decoration:none;color:black">our</a> <a id="instructions_link" href="about">instructions</a></strong>)</p>
+			<p class="center">(Before you begin, please read <a href= "http://fossasia.org/" style="text-decoration:none;color:black" id="our">our</a> <strong><a id="instructions_link" href="about" style="text-decoration:none;colour:black">instructions</a></strong>)</p>
 				<!--<a href=""><span style="position:relative; width:30%;">
 					<h1 style="background-color:yellow;margin:0 auto; text-align:center;width:180px">Take Quiz</h1><!--need to add link to quiz when button is pressed-->
 				</span></a>
 			<div>
 				<ul style="background-color:transparent">
-					<li id="takequiz"><a href="trollpage" style="opacity:0.9:" ><h1>Take Quiz</h1></a></li>
+					<li id="takequiz"><a href="question" style="opacity:0.9:" ><h1>Submit A Question</h1></a></li>
 				</ul>
 			</div>
 		
-		<h2 style="margin:0 auto; text-align:center;">Want to earn more points?<br><a href="question">Submit A Question!</a></h2>
+		<h2 style="margin:0 auto; text-align:center;">{{user_text}}<br><a href="leaderboard" style="text-decoration:none;color:black">{{user_score}}</a></h2>
 		</div>
 	</body>
 </html>
